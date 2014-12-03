@@ -233,6 +233,13 @@ function removeContractorInput() {
     contractor.parentNode.removeChild(contractor);
 }
 
+function getAnswerDataFromInput(contractorInput) {
+    var name = contractorInput.childNodes[1].value;
+    var jurisdiction = contractorInput.childNodes[2].value;
+    var opencorpID = contractorInput.childNodes[3].value;
+    return {'name': name, 'jurisdiction': jurisdiction, 'opencorpID': opencorpID}
+}
+
 pybossa.taskLoaded(function(task, deferred){
     if ( !$.isEmptyObject(task) ) {
         if (task.state=='completed') {
@@ -300,7 +307,11 @@ pybossa.presentTask(function(task, deferred){
                 removeContractorInput();
             });
             $(".btn-submit").off('click').on('click', function(){
-                var answer = $("textarea#text").val();
+                var answer = [];
+                var contractors = document.getElementById('contractors').childNodes;
+                for (i=0; i<contractors.length; i++) {
+                    answer.push(getAnswerDataFromInput(contractors[i]));
+                }
                 $("#viewport_" + task.id).hide();
                 pybossa.saveTask(task.id, answer).done(function(data){
                     deferred.resolve();
