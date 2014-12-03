@@ -246,7 +246,6 @@ pybossa.taskLoaded(function(task, deferred){
             $('#answer').hide();
             $('#taskcompleted').show();
         }
-        addContractorInput();
         // NOTE: 
         // Modifying the URL below to another server will likely *NOT* work. Because of browser
         // security restrictions, we have to use a file server with special headers
@@ -287,6 +286,7 @@ pybossa.presentTask(function(task, deferred){
             $("#question h1").text(task.info.question);
             $("#task-id").text(task.id);
             $("#loading").hide();
+            addContractorInput();
             $(".btn-zoom").off('click').on('click', function(evt){
                 console.log($(evt.target).attr("value"));
                 zoom(task, parseInt($(evt.target).attr("value")));
