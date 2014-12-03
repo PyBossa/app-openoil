@@ -76,11 +76,10 @@
           <div id="progress" rel="tooltip" title="#" class="bar" style="width: 0%;"></div>
       </div>
       <div>
-          <h5>Write here the transcription</h5>
-          <form class="form-inline">
-              <textarea id="text" rows="10" style="width:100%;"></textarea>
-          </form>
-          <button class="btn btn-submit">Submit transcription!</button>
+            <form id="contractors" class="form-inline"></form>
+            <button id="add-contractor" class="btn btn-default"><i class="fa fa-plus"></i></button>
+            <button id="remove-contractor" class="btn btn-default"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-submit">Submit transcription!</button>
       </div>
   </div>
 
@@ -141,8 +140,6 @@ function zoom(task, v) {
         var viewport = page.getViewport(task.scale + 0.1);
         task.canvas.height = viewport.height;
         task.canvas.width = viewport.width;
-
-
         // Render PDF page into canvas context
         var renderContext = {
           canvasContext: task.ctx,
@@ -201,12 +198,48 @@ function loadUserProgress() {
     });
 }
 
+function nextContractorNumber() {
+    return document.getElementById('contractors').childElementCount + 1;
+}
+
+function addContractorInput() {
+    var contractor = document.createElement('div');
+    contractor.id = "contractor-" + nextContractorNumber();
+    var title = document.createElement('h5');
+    var titleContent = document.createTextNode('Contractor '+nextContractorNumber());
+    title.appendChild(titleContent);
+    var nameField = document.createElement('input');
+    nameField.id = "legal-name-" + nextContractorNumber();
+    nameField.type = "text";
+    nameField.placeholder = "Full legal name";
+    var jurisdictionField = document.createElement('input');
+    jurisdictionField.id = "jurisdiction-" + nextContractorNumber();
+    jurisdictionField.type = "text";
+    jurisdictionField.placeholder = "Jurisdiction";
+    var opencorpField = document.createElement('input');
+    opencorpField.id = "opencorp-id-" + nextContractorNumber();
+    opencorpField.type = "text";
+    opencorpField.placeholder = "OpenCorporates Identifier";
+    contractor.appendChild(title);
+    contractor.appendChild(nameField);
+    contractor.appendChild(jurisdictionField);
+    contractor.appendChild(opencorpField);
+    document.getElementById('contractors').appendChild(contractor);
+}
+
+function removeContractorInput() {
+    var lastContractorId = nextContractorNumber() - 1;
+    var contractor = document.getElementById('contractor-'+lastContractorId);
+    contractor.parentNode.removeChild(contractor);
+}
+
 pybossa.taskLoaded(function(task, deferred){
     if ( !$.isEmptyObject(task) ) {
         if (task.state=='completed') {
             $('#answer').hide();
             $('#taskcompleted').show();
         }
+        addContractorInput();
         // NOTE: 
         // Modifying the URL below to another server will likely *NOT* work. Because of browser
         // security restrictions, we have to use a file server with special headers
@@ -259,6 +292,12 @@ pybossa.presentTask(function(task, deferred){
                 else {
                     goPrevious(task);
                 }
+            });
+            $("#add-contractor").off('click').on('click', function(){
+                addContractorInput();
+            });
+            $("#remove-contractor").off('click').on('click', function(){
+                removeContractorInput();
             });
             $(".btn-submit").off('click').on('click', function(){
                 var answer = $("textarea#text").val();
