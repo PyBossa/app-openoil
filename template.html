@@ -227,10 +227,16 @@ function addContractorInput() {
     document.getElementById('contractors').appendChild(contractor);
 }
 
-function removeContractorInput() {
+function removeLastContractorInput() {
     var lastContractorId = nextContractorNumber() - 1;
     var contractor = document.getElementById('contractor-'+lastContractorId);
     contractor.parentNode.removeChild(contractor);
+}
+
+function removeAllContractorInputs() {
+    while (nextContractorNumber() !== 1) {
+        removeLastContractorInput();
+    }
 }
 
 function getAnswerDataFromInput(contractorInput) {
@@ -268,8 +274,8 @@ pybossa.taskLoaded(function(task, deferred){
         task.pageNum = task.info.page;
 
         PDFJS.getDocument(task.info.pdf_url).then(function getPdfHelloWorld(_pdfDoc) {
-          task.pdfDoc = _pdfDoc;
-          deferred.resolve(task);
+            task.pdfDoc = _pdfDoc;
+            deferred.resolve(task);
         });
     }
     else {
@@ -304,7 +310,7 @@ pybossa.presentTask(function(task, deferred){
                 addContractorInput();
             });
             $("#remove-contractor").off('click').on('click', function(){
-                removeContractorInput();
+                removeLastContractorInput();
             });
             $(".btn-submit").off('click').on('click', function(){
                 var answer = [];
@@ -312,6 +318,7 @@ pybossa.presentTask(function(task, deferred){
                 for (i=0; i<contractors.length; i++) {
                     answer.push(getAnswerDataFromInput(contractors[i]));
                 }
+                removeAllContractorInputs();
                 $("#viewport_" + task.id).hide();
                 pybossa.saveTask(task.id, answer).done(function(data){
                     deferred.resolve();
