@@ -1,16 +1,30 @@
 <div class="row">
-    <div class="span12">
-        <div id="modal" class="modal hide fade">
+    <div class="col-md-12">
+        <div id="modal" class="modal hide fade" style="top: 6em">
             <div class="modal-header">
                 <h3>Tutorial</h3>
             </div>
             <div id="0" class="modal-body" style="display:none">
-                <p><strong>Hi!</strong> This is a <strong>demo application</strong> that shows how you can transcribe data directly from PDFs using PyBossa and Crowdcrafting.org.
-               </p> 
+                <p><strong>Hi!</strong> short welcome and explanation of what this is</p>
             </div>
             <div id="1" class="modal-body" style="display:none">
-                <p>The application is really simple. It loads a page from the PDF for you, and you will have to transcribe it in the available text area.</p>
-                <p>As this is a demo application, you <strong> can write whatever you like</strong>.</p>
+                <p>To help us, you'll have to find the contractors within the 5-page PDF files you'll be presented.</p>
+                <p>There may be one or more, so you can add or remove new contractors by clicking on <i class="fa fa-plus"></i> or <i class="fa fa-minus"></i> buttons.</p>
+            </div>
+            <div id="2" class="modal-body" style="display:none">
+                <h5>The first one is <strong>"Full legal name"</strong></h5>
+                <p>Search through the contract and fill in the names of each contractor, one by one. In order to identify each company, it is imported to write the FULL LEGAL NAME, i.e. "Shell Nigeria Developement Company" rather than simply "Shell".</p>
+            </div>
+            <div id="3" class="modal-body" style="display:none">
+                <h5>The second one is <strong>"Jurisdiction"</strong></h5>
+                <p>It is common in oil contracts to mention the jurisdiction of each contractor, i.e. "BP International Limited, registered in the United Kingdom". If this is the case, please only fill in "United Kingdom".</p>
+            </div>
+            <div id="4" class="modal-body" style="display:none">
+                <h5>Finally, the <strong>"Jurisdiction"</strong></h5>
+                <p>Please open up: www.opencorporates.com and see if you can find the company there. As there can be multiple companies with very similar names, please make sure that legal name and jurisdiction really match an entry on OpenCorporates, before you fill it in. Generally, OpenCorporates ID's look something like this: gb/00102498 and can be found in the URL of a company page.</p>
+            </div>
+            <div id="5" class="modal-body" style="display:none">
+                <p>And that's all! If you need a reminder on what exactly should be on each field, please push on the "Help" button you'll find to see these instructions again. Thank you!</p>
             </div>
             <div class="modal-footer">
                 <a id="prevBtn" href="#" onclick="showStep('prev')" class="btn">Previous</a>
@@ -24,22 +38,25 @@
     var step = -1;
     function showStep(action) {
         $("#" + step).hide();
-        if (action == 'next') {
+        if (action === 'next') {
             step = step + 1;
         }
-        if (action == 'prev') {
+        if (action === 'prev') {
             step = step - 1;
         }
-        if (step == 0) {
+        if (step === 0) {
             $("#prevBtn").hide();
         }
         else {
             $("#prevBtn").show();
         }
-
-        if (step == 1 ) {
+        if (step === 5 ) {
             $("#nextBtn").hide();
             $("#startContrib").show();
+        }
+        else {
+            $("#startContrib").hide();
+            $("#nextBtn").show();
         }
         $("#" + step).show();
     }
