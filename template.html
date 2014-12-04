@@ -281,7 +281,6 @@ pybossa.taskLoaded(function(task, deferred){
     else {
         deferred.resolve(task);
     }
-
 });
 
 pybossa.presentTask(function(task, deferred){
@@ -298,12 +297,13 @@ pybossa.presentTask(function(task, deferred){
                 zoom(task, parseInt($(evt.target).attr("value")));
             });
             $(".btn-navigate").off('click').on('click', function(evt){
-                console.log($(evt.target).attr("value"));
-                if ($(evt.target).attr("value") == "next") {
+                if ($(this).attr("value") === "next") {
                     goNext(task);
+                    return;
                 }
-                else {
+                if ($(this).attr("value") === "prev") {
                     goPrevious(task);
+                    return;
                 }
             });
             $("#add-contractor").off('click').on('click', function(){
