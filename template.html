@@ -98,8 +98,8 @@
 // Disable workers to avoid yet another cross-origin issue (workers need the URL of
 // the script to be loaded, and currently do not allow cross-origin scripts)
 //
+(function($, PDFJS, pybossa) {
 PDFJS.disableWorker = true;
-
 //
 // Get page info from document, resize canvas accordingly, and render page
 //
@@ -334,4 +334,5 @@ pybossa.presentTask(function(task, deferred){
 });
 
 pybossa.run('openoil');
+})(jQuery, PDFJS, pybossa);
 </script>
