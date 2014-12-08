@@ -178,9 +178,11 @@ function zoom(task, v) {
 
 function enableDisabledNavButtons(task){
     if (task.pageNum == 1) {
+        $("#next").removeClass("disabled");
         $("#prev").addClass("disabled");
     }
     else if (task.pageNum == 5) {
+        $("#prev").removeClass("disabled");
         $("#next").addClass("disabled");
     }
     else {
@@ -319,6 +321,7 @@ pybossa.presentTask(function(task, deferred){
             $("#task-id").text(task.id);
             $("#loading").hide();
             addContractorInput();
+            enableDisabledNavButtons(task);
             $(".btn-zoom").off('click').on('click', function(evt){
                 console.log($(evt.target).attr("value"));
                 zoom(task, parseInt($(evt.target).attr("value")));
