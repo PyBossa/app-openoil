@@ -1,21 +1,43 @@
+<style type="text/css">
+.modal-content p {
+    text-align: left;
+}
+</style>
 <div class="row">
-    <div class="span12">
-        <div id="modal" class="modal hide fade">
+    <div class="col-md-12">
+        <div id="modal" class="modal hide fade" style="top: 6em">
             <div class="modal-header">
                 <h3>Tutorial</h3>
             </div>
             <div id="0" class="modal-body" style="display:none">
-                <p><strong>Hi!</strong> This is a <strong>demo application</strong> that shows how you can transcribe data directly from PDFs using PyBossa and Crowdcrafting.org.
-               </p> 
+                <h5><strong>Hi!</strong></h5>
+                <p>Thanks for collaborating in this oil contracts crowdcrafting project. By transcribing the FULL LEGAL NAME and JURISDICTION of each CONTRACTOR of the following contracts, you will help create <a href="http://openoil.net/corporate-networks" target="_blank">corporate network maps</a> of the world's first comprehensive <a href="http://repository.openoil.net/" target="_blank">archive of published oil contracts</a>.</p>
+                <p>The process is very easy. Simply search through the following documents and fill in the form. For more information, please follow this tutorial."</p>
             </div>
             <div id="1" class="modal-body" style="display:none">
-                <p>The application is really simple. It loads a page from the PDF for you, and you will have to transcribe it in the available text area.</p>
-                <p>As this is a demo application, you <strong> can write whatever you like</strong>.</p>
+                <h5>The first one is <strong>"Full legal name"</strong></h5>
+                <p>Search through the contract and fill in the names of each contractor, one by one. In order to identify each company, it is imported to write the FULL LEGAL NAME, i.e. "Septa Energy Nigeria Limited" rather than simply "Septa".</p>
+                <img src="http://i.imgur.com/I6Dynbz.png">
+            </div>
+            <div id="2" class="modal-body" style="display:none">
+                <h5>The second one is <strong>"Jurisdiction"</strong></h5>
+                <p>It is common in oil contracts to mention the jurisdiction of each contractor, i.e. “Septa Energy Nigeria Limited“, “incorporated under the laws of the Federal Republic of Nigeria“. If this is the case, please only fill in "Nigeria".</p>
+                <img src="http://i.imgur.com/HcjIoas.png">
+            </div>
+            <div id="3" class="modal-body" style="display:none">
+                <h5>Finally, the <strong>"OpenCorporates Identifier"</strong></h5>
+                <p>Please open up: <a href="http://www.opencorporates.com" target="_blank">www.opencorporates.com</a> and see if you can find the company there. As there can be multiple companies with very similar names, please make sure that legal name and jurisdiction really match an entry on OpenCorporates, before you fill it in. Generally, OpenCorporates ID's look something like this: gb/00102498 and can be found in the URL of a company page.</p>
+            </div>
+            <div id="4" class="modal-body" style="display:none">
+                <p>There may be one or more contractors, so you can add new ones or remove them by clicking on <i class="fa fa-plus"></i> or <i class="fa fa-minus"></i> buttons.</p>
+            </div>
+            <div id="5" class="modal-body" style="display:none">
+                <p>And that's all! If you need a reminder on what exactly should be on each field, please push on the "Help" button you'll be able to see these instructions again. Thank you!</p>
             </div>
             <div class="modal-footer">
                 <a id="prevBtn" href="#" onclick="showStep('prev')" class="btn">Previous</a>
                 <a id="nextBtn" href="#" onclick="showStep('next')" class="btn btn-success">Next</a>
-                <a id="startContrib" href="../openoil/newtask" class="btn btn-primary" style="display:none"><i class="icon-thumbs-up"></i> Try the demo!</a>
+                <a id="startContrib" href="../openoil/newtask" class="btn btn-primary" style="display:none"><i class="icon-thumbs-up"></i> Start helping us!</a>
             </div>
         </div>
     </div>
@@ -24,22 +46,25 @@
     var step = -1;
     function showStep(action) {
         $("#" + step).hide();
-        if (action == 'next') {
+        if (action === 'next') {
             step = step + 1;
         }
-        if (action == 'prev') {
+        if (action === 'prev') {
             step = step - 1;
         }
-        if (step == 0) {
+        if (step === 0) {
             $("#prevBtn").hide();
         }
         else {
             $("#prevBtn").show();
         }
-
-        if (step == 1 ) {
+        if (step === 5 ) {
             $("#nextBtn").hide();
             $("#startContrib").show();
+        }
+        else {
+            $("#startContrib").hide();
+            $("#nextBtn").show();
         }
         $("#" + step).show();
     }

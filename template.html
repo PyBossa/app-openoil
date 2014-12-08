@@ -6,6 +6,9 @@
         background-color: rgba(255,255,255,1) !important;
         border-color: rgba(255,255,255,0.2) !important;
     }
+    .modal-content p {
+        text-align: left;
+}
 </style>
 
 <div class="row">
@@ -58,11 +61,13 @@
       </div>
       <div class="modal-body">
         <h4><strong>Full legal name</strong></h4>
-        <p>Please search through the contract and fill in the names of each contractor, one by one. In order to identify each company, it is imported to write the FULL LEGAL NAME, i.e. "Shell Nigeria Developement Company" rather than simply "Shell".</p>
+        <p>Search through the contract and fill in the names of each contractor, one by one. In order to identify each company, it is imported to write the FULL LEGAL NAME, i.e. "Septa Energy Nigeria Limited" rather than simply "Septa".</p>
+        <img src="http://i.imgur.com/I6Dynbz.png">
         <h4><strong>Jurisdiction</strong></h4>
-        <p>It is common in oil contracts to mention the jurisdiction of each contractor, i.e. "BP International Limited, registered in the United Kingdom". If this is the case, please only fill in "United Kingdom".</p>
+        <p>It is common in oil contracts to mention the jurisdiction of each contractor, i.e. “Septa Energy Nigeria Limited“, “incorporated under the laws of the Federal Republic of Nigeria“. If this is the case, please only fill in "Nigeria".</p>
+        <img src="http://i.imgur.com/HcjIoas.png">
         <h4><strong>OpenCorporates Identifier</strong></h4>
-        <p>As a next step, please open up: www.opencorporates.com and see if you can find the company there. As there can be multiple companies with very similar names, please make sure that legal name and jurisdiction really match an entry on OpenCorporates, before you fill it in. Generally, OpenCorporates ID's look something like this: gb/00102498 and can be found in the URL of a company page.</p>
+        <p>As a next step, please open up: <a href="http://www.opencorporates.com" target="_blank">www.opencorporates.com</a> and see if you can find the company there. As there can be multiple companies with very similar names, please make sure that legal name and jurisdiction really match an entry on OpenCorporates, before you fill it in. Generally, OpenCorporates ID's look something like this: gb/00102498 and can be found in the URL of a company page.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -74,7 +79,7 @@
 <div class="row skeleton" style="">
     <!-- Answer buttons -->
     <div id="answer" class="col-md-8" style="text-align:center;">
-        <div class="btn-group" style="padding-bottom:5px;">
+        <div class="btn-group-md" style="padding-bottom:5px;">
         <button id="prev" class="btn btn-primary btn-navigate disabled" value="prev"><i class="fa
               fa-arrow-left"></i></button>
         <button class="btn btn-primary btn-zoom" value=0>1:1</button>
