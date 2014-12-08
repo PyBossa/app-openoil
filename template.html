@@ -286,8 +286,8 @@ pybossa.taskLoaded(function(task, deferred){
         var canvas = $("<canvas/>", {"id": "canvas_" + task.id});
         canvas.css("border", "1px solid black");
         var viewport = $("<div/>", {"id": "viewport_" + task.id});
-        viewport.css("width",  "620px");
-        viewport.css("height", "755px");
+        viewport.css("width",  "100%");
+        viewport.css("height", "100%");
         viewport.css("overflow", "auto");
         viewport.css("display", "none");
         viewport.append(canvas);
