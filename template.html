@@ -237,9 +237,11 @@ function zoom(task, v) {
 
 function enableDisabledNavButtons(task){
     if (task.pageNum == 1) {
+        $("#next").removeClass("disabled");
         $("#prev").addClass("disabled");
     }
     else if (task.pageNum == 5) {
+        $("#prev").removeClass("disabled");
         $("#next").addClass("disabled");
     }
     else {
@@ -354,8 +356,8 @@ pybossa.taskLoaded(function(task, deferred){
         var canvas = $("<canvas/>", {"id": "canvas_" + task.id});
         canvas.css("border", "1px solid black");
         var viewport = $("<div/>", {"id": "viewport_" + task.id});
-        viewport.css("width",  "620px");
-        viewport.css("height", "755px");
+        viewport.css("width",  "100%");
+        viewport.css("height", "100%");
         viewport.css("overflow", "auto");
         viewport.css("display", "none");
         viewport.append(canvas);
@@ -387,6 +389,7 @@ pybossa.presentTask(function(task, deferred){
             $("#task-id").text(task.id);
             $("#loading").hide();
             addContractorInput();
+            enableDisabledNavButtons(task);
             $(".btn-zoom").off('click').on('click', function(evt){
                 console.log($(evt.target).attr("value"));
                 zoom(task, parseInt($(evt.target).attr("value")));
