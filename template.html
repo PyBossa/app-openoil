@@ -107,6 +107,7 @@
             <button id="add-contractor" class="btn btn-default"><i class="fa fa-plus"></i></button>
             <button id="remove-contractor" class="btn btn-default"><i class="fa fa-minus"></i></button>
             <button class="btn btn-submit">Submit transcription!</button>
+            <button id="skip-contract" class="btn btn-default">Skip this contract</button>
          </div>
     </div>
 </div>
@@ -426,7 +427,15 @@ pybossa.presentTask(function(task, deferred){
                     deferred.resolve();
                     $("#success").fadeIn();
                     setTimeout(function() { $("#success").fadeOut() }, 2000);
-                })
+                });
+            });
+            $("#skip-contract").off('click').on('click', function(){
+                var answer = 'skip';
+                pybossa.saveTask(task.id, answer).done(function(data){
+                    deferred.resolve();
+                    $("#success").fadeIn();
+                    setTimeout(function() { $("#success").fadeOut() }, 2000);
+                });
             });
     }
     else {
