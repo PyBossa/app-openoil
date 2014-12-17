@@ -1,4 +1,4 @@
-This project is aiming to improve transparency around oil contracts. Help us by going through the first 5-pages of most of the world's published oil contracts and identify the full legal name, jurisdiction and OpenCorporates ID (if existing) of each contractor mentioned in the contracts.
+This project is aiming to improve transparency around oil contracts. Help us by going through the first 5-pages of most of the world's published oil contracts and identify the **full legal name**, **jurisdiction** and **OpenCorporates ID** (if existing) of each contractor mentioned in the contracts.
 
 See this [tutorial](http://crowdcrafting.org/app/openoil/tutorial) to learn how.
 
