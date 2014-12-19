@@ -422,7 +422,7 @@ pybossa.presentTask(function(task, deferred){
                     answer.push(getAnswerDataFromInput(contractors[i]));
                 }
                 removeAllContractorInputs();
-                $("#viewport_" + task.id).hide();
+                $("#viewport_" + task.id).remove();
                 pybossa.saveTask(task.id, answer).done(function(data){
                     deferred.resolve();
                     $("#success").fadeIn();
@@ -430,9 +430,9 @@ pybossa.presentTask(function(task, deferred){
                 });
             });
             $("#skip-contract").off('click').on('click', function(){
-                var answer = 'skip';
+                var answer = 'skipped';
                 removeAllContractorInputs();
-                $("#viewport_" + task.id).hide();
+                $("#viewport_" + task.id).remove();
                 pybossa.saveTask(task.id, answer).done(function(data){
                     deferred.resolve();
                     $("#success").fadeIn();
