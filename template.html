@@ -431,6 +431,8 @@ pybossa.presentTask(function(task, deferred){
             });
             $("#skip-contract").off('click').on('click', function(){
                 var answer = 'skip';
+                removeAllContractorInputs();
+                $("#viewport_" + task.id).hide();
                 pybossa.saveTask(task.id, answer).done(function(data){
                     deferred.resolve();
                     $("#success").fadeIn();
