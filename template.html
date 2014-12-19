@@ -311,6 +311,10 @@ function addContractorInput() {
     jurisdictionField.id = "jurisdiction-" + nextContractorNumber();
     jurisdictionField.type = "text";
     jurisdictionField.placeholder = "Jurisdiction";
+    var abbreviationField = document.createElement('input');
+    abbreviationField.id = "abbreviation-" + nextContractorNumber();
+    abbreviationField.type = "text";
+    abbreviationField.placeholder = "Company Abbreviation";
     var opencorpField = document.createElement('input');
     opencorpField.id = "opencorp-id-" + nextContractorNumber();
     opencorpField.type = "text";
@@ -325,6 +329,7 @@ function addContractorInput() {
     contractor.appendChild(ocwidgetContainer);
     contractor.appendChild(nameField);
     contractor.appendChild(jurisdictionField);
+    contractor.appendChild(abbreviationField);
     contractor.appendChild(opencorpField);
     document.getElementById('contractors').appendChild(contractor);
 
@@ -344,10 +349,14 @@ function removeAllContractorInputs() {
 }
 
 function getAnswerDataFromInput(contractorInput) {
-    var name = contractorInput.childNodes[1].value;
-    var jurisdiction = contractorInput.childNodes[2].value;
-    var opencorpID = contractorInput.childNodes[3].value;
-    return {'name': name, 'jurisdiction': jurisdiction, 'opencorpID': opencorpID}
+    var name = contractorInput.childNodes[2].value;
+    var jurisdiction = contractorInput.childNodes[3].value;
+    var abbreviation = contractorInput.childNodes[4].value;
+    var opencorpID = contractorInput.childNodes[5].value;
+    return {'name': name,
+            'jurisdiction': jurisdiction,
+            'abbreviation': abbreviation,
+            'opencorpID': opencorpID}
 }
 
 pybossa.taskLoaded(function(task, deferred){
@@ -426,6 +435,7 @@ pybossa.presentTask(function(task, deferred){
                 }
                 removeAllContractorInputs();
                 $("#viewport_" + task.id).remove();
+                console.log(answer);
                 pybossa.saveTask(task.id, answer).done(function(data){
                     deferred.resolve();
                     $("#success").fadeIn();
