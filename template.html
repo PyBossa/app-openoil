@@ -111,7 +111,7 @@
             <form id="contractors" class="form-inline"></form>
             <button id="add-contractor" class="btn btn-default"><i class="fa fa-plus"></i></button>
             <button id="remove-contractor" class="btn btn-default"><i class="fa fa-minus"></i></button>
-            <button class="btn btn-primary">Submit transcription!</button>
+            <button id="submit-answer" class="btn btn-primary">Submit transcription!</button>
             <button id="skip-contract" class="btn btn-default">Skip this contract</button>
             <button id="report-contract" class="btn btn-default">Report this contract</button>
          </div>
@@ -430,7 +430,7 @@ pybossa.presentTask(function(task, deferred){
             $("#remove-contractor").off('click').on('click', function(){
                 removeLastContractorInput();
             });
-            $(".btn-submit").off('click').on('click', function(){
+            $("#submit-answer").off('click').on('click', function(){
                 var answer = [];
                 var contractors = document.getElementById('contractors').childNodes;
                 for (i=0; i<contractors.length; i++) {
